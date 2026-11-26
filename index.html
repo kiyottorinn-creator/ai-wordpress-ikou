@@ -89,25 +89,25 @@ WordPressプロジェクト自身が運営している、公開APIが開いた�
 
 <div class="kpi">
 <div><b>728</b><span>移した記事と固定ページ（本）</span></div>
-<div><b>606</b><span>運んだ画像（点・70.4MB）</span></div>
+<div><b>605</b><span>運んだ画像（点・70.39MB）</span></div>
 <div><b>731</b><span>書き出したページ</span></div>
-<div><b>141.5</b><span>通しの秒数（3回の中央値）</span></div>
+<div><b>141.7</b><span>通しの秒数（4回の中央値）</span></div>
 </div>
 
-<h3>工程ごとの秒数（同じ条件で3回）</h3>
+<h3>工程ごとの秒数（同じ条件で4回）</h3>
 <table>
-<thead><tr><th>工程</th><th class="n">1回目</th><th class="n">2回目</th><th class="n">3回目</th></tr></thead>
+<thead><tr><th>工程</th><th class="n">1回目</th><th class="n">2回目</th><th class="n">3回目</th><th class="n">4回目</th></tr></thead>
 <tbody>
-<tr><td>下見</td><td class="n">12.2秒</td><td class="n">12秒</td><td class="n">12.2秒</td></tr>
-<tr><td>取得</td><td class="n">80.1秒</td><td class="n">80秒</td><td class="n">78.6秒</td></tr>
-<tr><td>変換</td><td class="n">48.7秒</td><td class="n">49.5秒</td><td class="n">48.5秒</td></tr>
-<tr><td>点検</td><td class="n">0.1秒</td><td class="n">0.1秒</td><td class="n">0.1秒</td></tr>
-<tr><td>サイト書き出し</td><td class="n">0.3秒</td><td class="n">0.3秒</td><td class="n">0.3秒</td></tr>
-<tr><td>見積もり項目書</td><td class="n">0秒</td><td class="n">0秒</td><td class="n">0秒</td></tr>
-<tr><th>通し</th><td class="n"><strong>141.5秒</strong></td><td class="n"><strong>141.9秒</strong></td><td class="n"><strong>139.7秒</strong></td></tr>
+<tr><td>下見</td><td class="n">12.2秒</td><td class="n">12秒</td><td class="n">12.2秒</td><td class="n">12.5秒</td></tr>
+<tr><td>取得</td><td class="n">80.1秒</td><td class="n">80秒</td><td class="n">78.6秒</td><td class="n">82.7秒</td></tr>
+<tr><td>変換</td><td class="n">48.7秒</td><td class="n">49.5秒</td><td class="n">48.5秒</td><td class="n">48.4秒</td></tr>
+<tr><td>点検</td><td class="n">0.1秒</td><td class="n">0.1秒</td><td class="n">0.1秒</td><td class="n">0.1秒</td></tr>
+<tr><td>サイト書き出し</td><td class="n">0.3秒</td><td class="n">0.3秒</td><td class="n">0.3秒</td><td class="n">0.3秒</td></tr>
+<tr><td>見積もり項目書</td><td class="n">0秒</td><td class="n">0秒</td><td class="n">0秒</td><td class="n">0秒</td></tr>
+<tr><th>通し</th><td class="n"><strong>141.5秒</strong></td><td class="n"><strong>141.9秒</strong></td><td class="n"><strong>139.7秒</strong></td><td class="n"><strong>144秒</strong></td></tr>
 </tbody>
 </table>
-<p class="note">同じ指示を3回。139.7〜141.9秒でした。画像は毎回あらためて落としています。回線と相手のサーバーの状態で変わるので、あなたの手元で同じ秒数になる保証はしません。</p>
+<p class="note">同じ指示を4回。139.7〜144秒でした。画像は毎回あらためて落としています。回線と相手のサーバーの状態で変わるので、あなたの手元で同じ秒数になる保証はしません。</p>
 
 <h3>1ページあたりの重さ（旧サイトと新サイトを同じやり方で測った）</h3>
 <table>
@@ -117,7 +117,7 @@ WordPressプロジェクト自身が運営している、公開APIが開いた�
 <tr><td>新サイト（静的）</td><td class="n">3個</td><td class="n">142KB</td></tr>
 </tbody>
 </table>
-<p class="note">12本の平均。HTMLに書かれた参照だけを数えた。JavaScriptは実行していない。CSSの中から読まれるフォントは含まない。新ページは手元のファイルのサイズ。</p>
+<p class="note">12本の平均。HTMLに書かれた&lt;link rel=stylesheet&gt;・&lt;script src&gt;・&lt;img&gt;・&lt;source srcset&gt;だけを数えた。JavaScriptは実行していない。CSSの中から読まれるフォント、iframeの中身は含まない。新ページは手元のファイルのサイズ。表示までの時間は測っていない。</p>
 
 <h3>記事ごとの内訳</h3>
 <table>
@@ -137,6 +137,40 @@ WordPressプロジェクト自身が運営している、公開APIが開いた�
 <tr><td>WordPress 5.8 リリース候補 3</td><td class="n">10</td><td class="n">197</td><td class="n">2</td><td class="n">6</td></tr>
 </tbody>
 </table>
+
+<h3>最初の1バイトが届くまで（同じ記事で10回ずつ）</h3>
+<table>
+<thead><tr><th>　</th><th class="n">中央値</th><th class="n">幅</th><th class="n">HTMLの大きさ</th><th>置き先</th></tr></thead>
+<tbody>
+<tr><td>旧ページ（WordPress）</td><td class="n">207ms</td><td class="n">183〜1390ms</td><td class="n">199KB</td><td>nginx</td></tr>
+<tr><td>新ページ（静的）</td><td class="n">31ms</td><td class="n">19〜289ms</td><td class="n">58KB</td><td>GitHub.com</td></tr>
+</tbody>
+</table>
+<p class="note">置き先のサーバーも配信網も違うので、この差はWordPressか静的かだけの差ではありません。ブラウザでの表示完了までの時間でもありません。</p>
+
+<h2>同じ台本を、ほかのサイトにも当ててみました</h2>
+<p>下見だけ（最新20本＋固定ページ20本を実際に読んで数えた実数）。</p>
+<table>
+<thead><tr><th>サイト</th><th class="n">全体の本数</th><th class="n">読んだ分のalt無し画像</th><th class="n">URLに日本語</th><th>ショートコード</th></tr></thead>
+<tbody>
+<tr><td>ja.wordpress.org</td><td class="n">728本</td><td class="n">166点</td><td class="n">0/40本</td><td>なし</td></tr>
+<tr><td>wordpress.org/news</td><td class="n">1127本</td><td class="n">74点</td><td class="n">0/22本</td><td>なし</td></tr>
+<tr><td>liginc.co.jp</td><td class="n">5802本</td><td class="n">40点</td><td class="n">20/40本</td><td>GoogleMAP、blog_cta_light</td></tr>
+</tbody>
+</table>
+<p class="note">https://liginc.co.jp では、読んだ記事20本のうち20本のURLに日本語が入っていました。例: フリーランス8年から事業会社のwebデザイナーへ！。転送表を作らずに移すと、ここが全部リンク切れになります。</p>
+
+<h2>「下見では1213本、移したら1127本」が起きた話</h2>
+<p>wordpress.org/news には、記事と固定ページのほかに <strong>連載回（podcast）が86本</strong>あります。
+取得する種類を足し忘れると、台本は黙って86本落とします。</p>
+<table>
+<thead><tr><th>やり方</th><th class="n">下見で数えた本数</th><th class="n">実際に移せた本数</th><th>結果</th></tr></thead>
+<tbody>
+<tr><td>種類を足し忘れた（--types posts,pages）</td><td class="n">1213本</td><td class="n">1127本</td><td>86本 足りない（警告が出る）</td></tr>
+<tr><td>足した（--types posts,pages,podcast）</td><td class="n">1213本</td><td class="n">1213本</td><td>一致</td></tr>
+</tbody>
+</table>
+<p class="note">足りないことに気づけるのは、下見の本数と移せた本数を毎回突き合わせているからです。ここを見ていなかったせいで、最初は86本が静かに消えていました。</p>
 
 <h2>移した結果を、そのまま置いてあります</h2>
 <p>台本が書き出したHTMLそのものです。手で直していません。</p>
@@ -280,7 +314,7 @@ WordPressプロジェクト自身が運営している、公開APIが開いた�
 | --- | --- | --- | --- | --- | --- | --- |
 | 下見 | 公開APIの有無・投稿タイプ・プラグインの痕跡を調べる | 1回 | survey.js | 移行対象に入れる投稿タイプを依頼主と決める |  |  |
 | 取得 | 記事・固定ページを落とす | 728本 | pull.js | 本数が下見と合っているか確認 |  |  |
-| 取得 | 画像を落とす | 606点 | convert.js | 落とせなかった4点の扱いを決める |  |  |
+| 取得 | 画像を落とす | 605点 | convert.js | 落とせなかった4点の扱いを決める |  |  |
 | 変換 | 本文をMarkdownに組み直す | 728本 | convert.js | 表・引用のある記事を抜き出して見る |  |  |
 | 変換 | サイト固有の置き換えルールを書く | 12件 | 移行係（AI）が草案 | 1件ずつ読んで採否を決める |  |  |
 | 変換 | 内部リンクを新しいURLに付け替える | 421本 | convert.js | 付け替わらなかったリンクの行き先を決める |  |  |
@@ -312,17 +346,43 @@ WordPressプロジェクト自身が運営している、公開APIが開いた�
 ## 注意
 
 - ログインしないと読めない投稿タイプが4件あります: feedback, jetpack_form, jp_act_log_event, jp_pay_order
-
-## 1ページあたりの重さ（実測）
-
-- 旧サイト: 11個のファイル / 341KB
-- 新サイト: 3個のファイル / 142KB
-- 測った本数: 12本。HTMLに書かれた参照だけを数えた。JavaScriptは実行していない。CSSの中から読まれるフォントは含まない。新ページは手元のファイルのサイズ。
 </code></pre>
+
+<h2>実際に踏んだ不具合（10件）</h2>
+<p>記事では、この10件を原因と直し方つきで全部書いています。ここでは見出しだけ。</p>
+<table>
+<thead><tr><th class="n">#</th><th>起きたこと</th><th>原因</th></tr></thead>
+<tbody>
+<tr><td class="n">1</td><td>表の見出しが「****プラグイン****」になり、リンクが「[[WP-CLI](URL)](URL)」と二重になった</td><td>WordPressの本文には &lt;strong&gt; の中の &lt;strong&gt;、&lt;a&gt; の中の &lt;a&gt; が実際に入っている</td></tr>
+<tr><td class="n">2</td><td>表の1行目が勝手に見出し行になり、データが1行消えたように見えた</td><td>WordPressの表の多くは thead が無い。先頭行を見出しと決め打ちしていた</td></tr>
+<tr><td class="n">3</td><td>ショートコードの残骸が32,145件と出た</td><td>自分の正規表現が、変換後のMarkdownのリンク [文字](URL) を数えていた</td></tr>
+<tr><td class="n">4</td><td>wordpress.org/news で、下見は1213本と出たのに、変換は1127本しか出なかった（連載回86本が黙って落ちた）</td><td>取得は --types で増やせるのに、変換側が「記事と固定ページ」の決め打ちだった</td></tr>
+<tr><td class="n">5</td><td>移行したら、1ページが984KBから1,169KBに重くなった</td><td>アイキャッチを原寸で運んでいた。WordPressが自動で作る小さい版を使っていなかった</td></tr>
+<tr><td class="n">6</td><td>直したのに、別の記事が999KBから1,217KBに重かった</td><td>srcsetから「目標以上で最小」を選ぶと、目標1058pxのときに1024pxを飛ばして1536pxを選んでしまう</td></tr>
+<tr><td class="n">7</td><td>移行係（AI）が出した11件のルールが、検算で全部「想像で足した」と赤になった</td><td>検算側がホスト名にしか正規表現を当てていなかった。AIはフルURLの形で書いていた</td></tr>
+<tr><td class="n">8</td><td>公開APIが閉じているサイトを下見したら、記録を書く所で落ちた</td><td>早く帰る経路でフォルダを作っていなかった</td></tr>
+<tr><td class="n">9</td><td>書き出しファイルから移すと、内部リンクの付け替えが0件になった</td><td>サイトのURLに wp:base_site_url（wordpress.com）を使っていた。記事のURLの元は wp:base_blog_url</td></tr>
+<tr><td class="n">10</td><td>claude の呼び出しが「係が見つからない」で落ちた</td><td>--agents（複数形）を渡していた。係を1つ指定するのは --agent</td></tr>
+</tbody>
+</table>
 
 <h2>測っていないこと</h2>
 <div class="box">
 <ul>
+<li>microCMSへの実際の入稿はしていない。入稿用JSONと項目の設計（schema.json）を出すところまで。アカウントを作らずに検証したため</li>
+<li>この移行を実際に納品していない。受注件数・単価・月額保守の実績はゼロ</li>
+<li>検索順位・検索からの流入の変化は測っていない。転送表を作ったところまで</li>
+<li>ブラウザでの表示完了までの時間（LCPなど）は測っていない。測ったのはファイルの数とバイト数と、最初の1バイトが届くまでの時間だけ</li>
+<li>最初の1バイトまでの時間の比較は、置き先のサーバーも配信網も違う。WordPressか静的かだけの差ではない</li>
+<li>WooCommerce・Elementor・ACFが入ったサイトでは試していない。下見で痕跡を見つけるところまで</li>
+<li>画像を縮小（リサイズ）する工程は入れていない。WordPressが作った版から選ぶだけ。版が無い画像は原寸のまま運ばれる</li>
+<li>コメントは移していない</li>
+<li>Windowsでは試していない。Macのみ</li>
+<li>旧サイトを止めてドメインを切り替える作業はしていない</li>
+<li>動かしたのはWordPressプロジェクトの公開サイト2つ、制作会社サイト1つの下見、公式のテスト用書き出しファイル1つ。一般の依頼主のサイトでは動かしていない</li>
+</ul>
+</div>
+<div class="box" style="display:none"><ul>
 <li><strong>ブラウザでの表示時間は測っていません。</strong>ファイルの数とバイト数だけです</li>
 <li><strong>microCMSへの実際の入稿はしていません。</strong>入稿用のJSONと項目の設計までです（アカウントを作らずに検証したため）</li>
 <li><strong>この移行を納品していません。</strong>受注件数・単価・月額保守の実績はありません</li>
