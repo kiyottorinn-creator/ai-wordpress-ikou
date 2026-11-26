@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ja">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WordPress 6.4 リリース候補版 1</title>
+<meta name="description" content="以下は WordPress.org 公式ブログの記事「WordPress 6.4 Release Candidate 1」を訳したものです。 誤字脱字誤訳などありましたらフォーラムまでお知らせください。 最初の Word […]">
+
+<link rel="stylesheet" href="../../style.css">
+<header class="site"><div class="wrap"><strong><a href="../" style="color:inherit;text-decoration:none">WordPress 日本語</a></strong><nav><a href="../">記事一覧</a></nav></div></header>
+<main class="wrap">
+<article>
+<h1>WordPress 6.4 リリース候補版 1</h1>
+<p class="meta">2023年10月22日 ／ Development、Releases</p>
+
+<p>以下は WordPress.org 公式ブログの記事「<a href="https://wordpress.org/news/2023/10/wordpress-6-4-release-candidate-1/">WordPress 6.4 Release Candidate 1</a>」を訳したものです。</p>
+<p>誤字脱字誤訳などありましたら<a href="https://ja.wordpress.org/support/forum/alphabeta/">フォーラムまでお知らせください</a>。</p>
+<hr>
+<p>最初の WordPress 6.4 リリース候補版 (RC1) の準備が整いました。</p>
+<p><strong>このバージョンの WordPress は未だ開発途上の段階にあります。</strong>本稼働中のウェブサイトにインストールして使用することは避けてください。リリース候補版の評価はテスト用のサーバーを用意してその上で行いましょう。</p>
+<p>リリース候補版の公開はリリースサイクルにおけるひとつの重要な節目です。リリース候補版は最終リリースの水準に限りなく近づいた品質にあると見なすことができますが、WordPress 6.4 を最高の状態で世に出すためには引き続きのテストが欠かせません。</p>
+<p>WordPress 6.4 RC1 のテストには次の三通りの方法があります:</p>
+<ol><li><strong>プラグイン:</strong> <a href="https://ja.wordpress.org/plugins/wordpress-beta-tester/">WordPress Beta Tester</a> プラグインをインストールして有効化する。設定では「最前線」チャンネルと「ベータ / RC のみ」ストリームをそれぞれ選択。</li><li><strong>直接ダウンロード:</strong> <a href="https://wordpress.org/wordpress-6.4-RC1.zip">RC1 バージョンの zip ファイル</a>をダウンロードして WordPress ウェブサイトにインストールする。</li><li><p><strong>コマンドライン:</strong> 次の <a href="https://make.wordpress.org/cli/">WP-CLI</a> コマンドを実行する:
+<code>wp core update --version=6.4-RC1</code></p></li></ol>
+<p>WordPress 6.4 の最終リリース目標日は<strong>2023年11月7日</strong>に設定されています。もっと詳しく知りたい方は、<a href="https://make.wordpress.org/core/6-4/">6.4 リリースサイクルの概略</a>、<a href="https://make.wordpress.org/core/">Make WordPress Core ブログ</a>の <a href="https://make.wordpress.org/core/tag/6-4/">6.4 関連記事</a> を参照してください。</p>
+<p>WordPress 6.4 のリリースは<a href="https://make.wordpress.org/core/2023/06/05/wordpress-6-4-development-cycle/"><strong>過小評価ジェンダー・リリース部隊</strong></a>がお届けしています。過小評価されたジェンダーを自認する人々の参加と連帯を促す WordPress オープンソースプロジェクト内の小グループです。</p>
+<h3>WordPress 6.4 RC1 の見どころ紹介</h3>
+<p>本リリースにはエディター関連の420件の機能強化と445件のバグ修正 (<a href="https://core.trac.wordpress.org/query?status=closed&amp;amp;milestone=6.4&amp;amp;group=component&amp;amp;max=500&amp;amp;col=id&amp;amp;col=summary&amp;amp;col=owner&amp;amp;col=type&amp;amp;col=priority&amp;amp;col=component&amp;amp;col=version&amp;amp;order=priority">260件以上の WordPress 6.4 コア向けチケット</a>を含む) が含まれます。以下のリンクから最近対応された全イシューの技術的詳細を閲覧できます:</p>
+<ul><li><a href="https://github.com/WordPress/gutenberg/commits/wp/6.4">6.4 対象の GitHub コミット一覧</a></li><li><a href="https://core.trac.wordpress.org/query?status=closed&amp;amp;changetime=10%2F12%2F2023..10%2F17%2F2023&amp;amp;milestone=6.4&amp;amp;col=id&amp;amp;col=milestone&amp;amp;col=owner&amp;amp;col=type&amp;amp;col=priority&amp;amp;order=id">ベータ 4 以降にクローズされた Trac チケット一覧</a></li><li><a href="https://github.com/WordPress/twentytwentyfour/commits/">Twenty Twenty-Four テーマ対象の GitHub コミット一覧</a></li></ul>
+<h4>ハイライト</h4>
+<p>WordPress 6.4 は2023年中三発目にして最後のメジャーリリースです。多目的の新デフォルトテーマ、数々の新機能、そしてサイト編集とデザインから執筆フローに至る創作体験のあらゆる側面を力強く後押しする機能強化を実現します。</p>
+<ul><li><strong>新しいデフォルトテーマ <a href="https://make.wordpress.org/core/2023/08/24/introducing-twenty-twenty-four/">Twenty Twenty-Four</a></strong> は現時点の WordPress における最高水準を体現します。同梱される広範なテンプレートとパターンのコレクションを駆使して、サイトをあなたのブランドに染めましょう。柔軟さと多用途性を兼ね備える Twenty Twenty-Four ならあらゆるウェブサイトにうまく馴染むはずです。</li><li><strong>Lightbox</strong> の導入により没入感のある画像表示体験を実現します。</li><li><strong>カスタムカテゴリーによるパターンの分類。</strong>パターンセクションの進歩したフィルタリングでより直感的な検索が可能になります。</li><li><strong><a href="https://make.wordpress.org/core/2023/10/05/core-editor-improvement-ensuring-excellence-in-the-writing-experience/">さらに改善された執筆体験</a>をお楽しみください。</strong>これには新しいキーボードショートカット、より滑らかなリスト結合、洗練されたリンク設定のコントロールが含まれます。ナビゲーション、リスト、引用の各ブロックで利用可能になる新鮮なツールバー体験は操作オプションへのアクセスをよりまとまりのある体系的なものに変えます。</li><li><strong>再設計され新しいコマンドが追加された<a href="https://make.wordpress.org/core/2023/09/12/core-editor-improvement-commanding-the-command-palette/">コマンドパレット</a></strong>は、必要なものを探したり、効率的なタスク実行、またワークフローのスピード向上に役立ちます。</li><li><strong>グループブロックの名前を変更</strong>してコンテンツ領域の体系化や区別を容易にしましょう。</li><li><strong>リストビュー内の新しいギャラリーと画像プレビュー</strong>を使って、メディア資産の配置を一目で確認できます。</li><li><strong>拡張されたデザインツール</strong>で美観と機能性を両立したレイアウトを構築しましょう。グループブロックの背景画像を指定してユニークで創造的なデザインを楽しんだり、プレースホルダー縦横比との一貫性が保たれた画像サイズ指定、またカスタム CSS の指定なしでナビゲーションブロックに対し簡単にボタンを追加するなど、他にも多数の新機能を利用できます。</li><li><strong>ブロックフック</strong>により、開発者が指定した位置に自動でブロックを挿入できるようになり、プラグインを介したブロックテーマの拡張が可能になります。この新機能は開発者本位なものですが、ブロックを用いた体験を改善し、必要に応じたブロックのカスタマイズ制御を実現するものです。</li><li><strong>60件以上のアクセシビリティ更新</strong>が適用されました。これにはリストビューの大々的な強化、ナビゲーションブロックの aria-label サポート、管理者ユーザーインターフェイスのアップグレードが含まれます。</li><li><strong>100件超のパフォーマンス更新</strong>が適用されました。クラシックテーマとブロックテーマ双方におけるテンプレートローディングのパフォーマンス改善、スクリプトローディングストラテジー defer と async の使用、自動ロードオプションの最適化に重点が置かれています。</li></ul>
+<p>詳細や技術解説についてより深く知りたい場合は、<a href="https://make.wordpress.org/core/tag/dev-notes+6-4/">最近行われた更新</a>のいくつかを扱っている以下の投稿を参照してみてください:</p>
+<ul><li><a href="https://make.wordpress.org/core/2023/10/16/changes-to-attachment-pages/">Changes to attachment pages for improved SEO</a></li><li><a href="https://make.wordpress.org/core/2023/10/17/miscellaneous-editor-changes-in-wordpress-6-4/">Miscellaneous Editor changes in WordPress 6.4</a></li><li><a href="https://make.wordpress.org/core/2023/10/15/introducing-block-hooks-for-dynamic-blocks/">Introducing Block Hooks for dynamic blocks</a></li><li><a href="https://make.wordpress.org/core/2023/10/17/script-loading-changes-in-wordpress-6-4/">Script loading changes in WordPress 6.4</a></li><li><a href="https://make.wordpress.org/core/2023/10/17/improvements-to-template-loading-in-wordpress-6-4/">Improvements to template loading in WordPress 6.4</a></li><li><a href="https://make.wordpress.org/core/2023/10/16/introducing-admin-notice-functions-in-wordpress-6-4/">Introducing admin notice functions in WordPress 6.4</a></li><li><a href="https://make.wordpress.org/core/2023/10/16/editor-components-updates-in-wordpress-6-4/">Updates to user-interface components in WordPress 6.4</a></li><li><a href="https://make.wordpress.org/core/2023/10/16/new-registerinsertermediacategory-api/">New \<code>registerInserterMediaCategory\</code> API</a></li></ul>
+<h3>コントリビュートへの道</h3>
+<p>WordPress は協働し開発に貢献する人々のコミュニティによって実現されたオープンソースソフトウェアであり、そこでは技術的な専門性を問わず皆に貢献の機会があります。</p>
+<h4>テストに参加する</h4>
+<p>ソフトウェアを開発しその品質を確かなものにするために、テストを実施することは極めて重要です。テストに参加することはまた、経験を問わず誰もがプロジェクトに貢献できる有意義な方法でもあります。<a href="https://make.wordpress.org/test/2023/09/26/help-test-wordpress-6-4/">こちらの詳細な手引きを参照して</a> WordPress 6.4 の主要機能のテストについて学びましょう。</p>
+<p>問題に遭遇したかもと思った時は、まずサポートフォーラムの<a href="https://wordpress.org/support/forum/alphabeta/">アルファ・ベータエリア</a>に報告をしてください。再現可能なバグ報告の作成に慣れている方は <a href="https://core.trac.wordpress.org/newticket">WordPress Trac への報告</a>をお願いします。<a href="https://core.trac.wordpress.org/tickets/major">既知のバグ</a>の一覧も Trac で閲覧可能です。</p>
+<p>WordPress リリースのテスト全般について知りたいですか ? <a href="https://make.wordpress.org/test/">Make WordPress Test</a> をフォローする、<a href="https://wordpress.slack.com/">Making WordPress Slack</a> の <a href="https://wordpress.slack.com/messages/core-test/">#core-test</a> チャンネルに参加する、などの方法があります。</p>
+<h4>脆弱性を見つける</h4>
+<p>WordPress 6.4 のリリース候補期間中、<a href="https://make.wordpress.org/security/2023/09/26/bug-bounty-for-wordpress-6-4-beta/">未発表のセキュリティ脆弱性の報告に対する報奨金</a>の額が2倍になります。報告は <a href="https://hackerone.com/wordpress">HackerOne のページ</a>ならびに<a href="https://wordpress.org/about/security/">セキュリティ白書</a>に記載のセキュリティプラクティスとポリシーに沿った責任ある情報公開手順に従って適切に行なってください。</p>
+<h4>テーマやプラグインを更新する</h4>
+<p>テーマやプラグインを開発していますか ? WordPress の機能を拡張し世界中のユーザーにその価値を広める上であなたの作品が果たす役割は重大です。</p>
+<p>すでに WordPress 6.4 ベータ版でテーマやプラグインをテストされていることでしょう。引き続き RC1 で詰めのテストを実施し、正常な動作が確認できたなら、<a href="https://developer.wordpress.org/plugins/wordpress-org/how-your-readme-txt-works/">readme ファイル</a>の <strong>Tested up to</strong> バージョン指定を 6.4 に上げてください。</p>
+<p>互換性の問題を見つけた場合は詳しい情報を<a href="https://wordpress.org/support/forum/alphabeta/">サポートフォーラム</a>に投稿してください。</p>
+<h4>翻訳にご協力ください</h4>
+<p>英語以外の言語を話せますか ? スペイン語 ? フランス語 ? ポルトガル語 ? ロシア語 ? 日本語 ? <a href="https://translate.wordpress.org/projects/wp/dev/">100 を超す言語への WordPress の翻訳を手伝ってくれませんか ?</a> 本バージョン (RC1) は WordPress 6.4 リリースサイクルにおける翻訳対象語句の<a href="https://make.wordpress.org/polyglots/handbook/glossary/#hard-freeze">ハード凍結ポイント</a>でもあります。</p>
+<hr>
+<p>(訳註: 愉快な俳句と執筆貢献者の一覧については日本語訳から割愛します。興味のある方はぜひ<a href="https://wordpress.org/news/2023/10/wordpress-6-4-release-candidate-1/">原文記事</a>をご覧ください。)</p>
+</article>
+</main>
+<footer class="site"><div class="wrap">このページは静的なHTMLです。表示のためにデータベースを使っていません。</div></footer>
+</html>

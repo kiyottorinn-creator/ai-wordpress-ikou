@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ja">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WordPress 7.2 リリース候補版3 (RC3版)</title>
+<meta name="description" content="以下は WordPress.org 公式ブログの記事「WordPress 7.2 Release Candidate 3」の翻訳です。 誤字脱字誤訳などありましたらフォーラムまでお知らせください。 WordPress 7 […]">
+
+<link rel="stylesheet" href="../../style.css">
+<header class="site"><div class="wrap"><strong><a href="../" style="color:inherit;text-decoration:none">WordPress 日本語</a></strong><nav><a href="../">記事一覧</a></nav></div></header>
+<main class="wrap">
+<article>
+<h1>WordPress 7.2 リリース候補版3 (RC3版)</h1>
+<p class="meta">2026年11月25日 ／ 更新 2026年11月25日 ／ Announcement、Development、7-2</p>
+
+<p>以下は WordPress.org 公式ブログの記事「<a href="https://wordpress.org/news/2026/11/wordpress-7-2-release-candidate-3/">WordPress 7.2 Release Candidate 3</a>」の翻訳です。</p>
+<p>誤字脱字誤訳などありましたら<a href="https://ja.wordpress.org/support/forum/alphabeta/">フォーラムまでお知らせください</a>。</p>
+<hr>
+<p>WordPress 7.2リリース候補版 3 (RC3) のテストの準備が整いました !</p>
+<p><strong>このバージョンの WordPress ソフトウェアは現在もまだ、開発中です。</strong> このバージョンの WordPress を本番サイトや重要なウェブサイトにインストール、実行、テストしないでください。 新機能を試すには、代わりにテスト環境やローカルサイトをセットアップしてください。</p>
+<p>あれ、7.2 RC2 はどうなったのでしょうか ?
+<a href="../wordpress-7-1-5/">WordPress 7.1.5</a> の変更内容が、同じタイミングで WordPress 7.2 RC2 として反映されています。</p>
+<h3>WordPress 7.2リリース候補版3 をテストする方法</h3>
+<p>WordPress 7.2 RC3 は以下のいずれかの方法でテストできます。</p>
+<div class="table-wrap"><table><tbody><tr><td><strong>プラグイン</strong></td><td><a href="https://wordpress.org/plugins/wordpress-beta-tester/">WordPress Beta Tester</a> プラグインをインストールして有効化する。設定で「最前線」チャンネルと「ベータ / RC のみ」ストリームを選択します。</td></tr><tr><td><strong>直接ダウンロード</strong></td><td><a href="https://wordpress.org/wordpress-7.2-RC3.zip">RC3 version (zip)</a> をダウンロードして、WordPress サイトにインストールする。</td></tr><tr><td><strong>コマンドライン</strong></td><td><a href="https://make.wordpress.org/cli/">WP-CLI</a> コマンドを実行する。 <code>wp core update --version=7.2-RC3</code></td></tr><tr><td><strong>WordPress Playground</strong></td><td><a href="http://playground.wordpress.net/release">WordPress Playground instance</a> を使用する。ブラウザーで直接ソフトウェアをテストできます。個別のサイトやセットアップは必要ありません。</td></tr></tbody></table></div>
+<p>WordPress 7.2 の最終リリース日は2026年12月8日を予定しています。<a href="https://make.wordpress.org/core/2026/10/06/wordpress-7-2-release-party-schedule/">リリーススケジュールの詳細</a>はこちらをご覧ください。ベータ版とリリース候補版のテストにご協力いただくことは、最終リリースを安定した、パワフルなものにするために必要不可欠です。テストにご協力くださる皆様に感謝いたします !</p>
+<p>今後数週間、引き続き <a href="https://make.wordpress.org/core/">Make WordPress Core ブログ</a>で <a href="https://make.wordpress.org/core/tag/7-2">7.2 関連の情報</a>はご確認ください。</p>
+<h3>RC1 以降のコアの変更点</h3>
+<p>WordPress 7.2 の詳細については、<a href="../wordpress-7-2-release-candidate-1/">RC1 のお知らせ</a>をご覧ください。
+RC1 以降に対応したすべての問題の技術的な詳細は、以下のリンクから確認できます。</p>
+<ul><li>2026年11月17日以降の <a href="https://core.trac.wordpress.org/query?changetime=11%2F17%2F2026..11%2F24%2F2026&amp;amp;milestone=7.2&amp;amp;status=closed&amp;amp;group=component&amp;amp;order=id&amp;amp;col=id&amp;amp;col=summary&amp;amp;col=milestone&amp;amp;col=owner&amp;amp;col=type&amp;amp;col=priority">7.2 対象のクローズされた Trac チケット一覧</a></li><li>2026年11月17日以降の <a href="https://github.com/WordPress/gutenberg/commits/wp/7.2?since=2026-11-17&amp;amp;until=2026-11-24">7.2 対象の Gutenberg コミット</a></li></ul>
+<p>今回のリリースでは、さらなるバグ修正、アクセシビリティの改善、互換性に関する更新が行われています。具体的には、クライアント側でのメディア処理の改善、項目数が最新の状態に更新されていないナビゲーションメニューの修正、HTML やリビジョンのメタデータの処理の信頼性向上などです。さらに、メールヘッダー処理の強化、フォントのアップロードに関する互換性の問題への対応、大規模サイトでのランダムなコンテンツへのリダイレクト処理のパフォーマンス改善も行われています。</p>
+<p>詳細はこちら<strong>:</strong> <a href="https://core.trac.wordpress.org/ticket/66769">Trac #66769</a>, <a href="https://core.trac.wordpress.org/ticket/66668">Trac #66668</a>, <a href="https://core.trac.wordpress.org/ticket/66102">Trac #66102</a>, <a href="https://core.trac.wordpress.org/ticket/66490">Trac #66490</a>, <a href="https://core.trac.wordpress.org/ticket/66654">Trac #66654</a></p>
+<h3>ブロックエディターのさらなる改善</h3>
+<p>WordPress 7.2 RC3 では、ブロックエディターのさらなる調整が行われ、セキュリティ、アクセシビリティ、メディア処理が改善されています。最近の修正には、外部画像のメタデータやエンティティレコードの処理の強化、メディア変換時のファイル名の保持、Interactivity API のクライアント側とサーバー側の動作の一貫性向上が含まれます。さらに、階層構造を持たない投稿タイプのエディターコントロールの簡素化や、アクセシビリティラベルの改善も行われています。</p>
+<p>詳細はこちら<strong>:</strong> <a href="https://github.com/WordPress/gutenberg/pull/87015">GitHub #87015</a>, <a href="https://github.com/WordPress/gutenberg/pull/87150">GitHub #87150</a>, <a href="https://github.com/WordPress/gutenberg/pull/87275">GitHub #87275</a></p>
+<h3>コントリビュートの方法</h3>
+<p>WordPress は、情熱を持って開発に携わるコミュニティの協力と貢献によって成り立っているオープンソースソフトウェアです。以下では、技術的な専門知識の有無を問わず、世界で最も人気のあるオープンソースの Web プラットフォームを支援するさまざまな方法をご紹介します。</p>
+<h4>テストに参加する</h4>
+<p>問題のテストは、あらゆるソフトウェア開発において不可欠です。また、誰もが貢献できる有意な方法です。
+WordPress 7.2 リリース候補版3 のテストにご協力いただくことは、最終リリースを最高の状態に仕上げるための重要な鍵となります。アップグレード手順のテストが不可欠である一方で、新機能を試していただくことも同じくらい重要です。この<a href="https://make.wordpress.org/test/2026/10/20/help-test-wordpress-7-2/">詳細ガイド</a>では、WordPress 7.2 の各新機能をテストする手順を順を追ってご紹介します。</p>
+<p>リリースのテスト全般について知りたければ、<a href="https://make.wordpress.org/test/">Make Core におけるテスト関連タスク</a>をフォローし、<a href="https://wordpress.slack.com/">Making WordPress Slack</a> の <a href="https://wordpress.slack.com/messages/core-test/">#core-test チャンネル</a>に参加してください。</p>
+<h4>テーマやプラグインを更新する</h4>
+<p>プラグインやテーマの作者のみなさん、WordPress の機能を拡張しすべてのユーザーにその価値を広める上であなたの作品が果たす役割は重大です。
+RC3 の公開に合わせて、テストを終了し、プラグインの <a href="https://developer.wordpress.org/plugins/wordpress-org/how-your-readme-txt-works/">readme ファイル</a>「Tested up to」バージョン指定を 7.2 に更新してください。</p>
+<p>互換性の問題を見つけた場合は詳しい情報を<a href="https://wordpress.org/support/forum/alphabeta/">サポートフォーラム</a>に投稿してください。</p>
+<h4>ホスティングプラットフォームでテストする</h4>
+<p>WordPress のテストを支援してくださっているすべての <a href="https://make.wordpress.org/hosting/test-results/">Web ホスティング事業者の皆さん</a>に感謝します。
+Web ホスティング事業者は、WordPress とそのユーザーを支える重要なインフラを提供しています。ホスティング環境でのテストは、開発プロセスに有益な情報をもたらすとともに、WordPress とホスティングプラットフォームの完全な互換性、エラーのない動作、最適なユーザー体験を実現するための最適化、そしてアップデートがユーザーのサイトに問題なく反映されることを確認するうえで役立ちます。</p>
+<p>ご自身のホスティング環境で WordPress をテストしてみませんか ? <a href="https://make.wordpress.org/hosting/test-results-getting-started/">分散ホスティングテストの設定方法はこちらから始めてください。</a></p>
+<h4>RC3 で一句</h4>
+<p>*RC3 ここに
+実りを待ちて
+門出待つ*</p>
+<p><em>協力とレビューに参加してくださった <a href="https://profiles.wordpress.org/audrasjb/">@audrasjb</a> と @3kori に感謝します。</em></p>
+<hr>
+<p>協力者: <a href="https://profiles.wordpress.org/nukaga/">@nukaga</a>, <a href="https://profiles.wordpress.org/atachibana/">@atachibana</a>, <a href="https://profiles.wordpress.org/toru/">@toru</a>, <a href="https://profiles.wordpress.org/torikumo/">@torikumo</a></p>
+</article>
+</main>
+<footer class="site"><div class="wrap">このページは静的なHTMLです。表示のためにデータベースを使っていません。</div></footer>
+</html>

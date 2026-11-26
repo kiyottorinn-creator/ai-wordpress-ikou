@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="ja">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WordPress移行の下見ツール｜実測つきの見本</title>
+<meta name="description" content="WordPressサイトのURLを入れると、移行で何本・何点・何箇所を直すことになるかをブラウザの中だけで数えます。本物のWordPressサイト728本を移した実測つき。">
+<style>
+:root{--ink:#1b2430;--mute:#5c6b7d;--line:#e2e8ef;--bg:#fff;--acc:#126b58;--accbg:#edf7f4;--bad:#b23;--warn:#fff7e6}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.85 system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+a{color:var(--acc)}
+header{background:linear-gradient(180deg,#f3faf8,#fff);border-bottom:1px solid var(--line);padding:38px 0 30px}
+h1{font-size:27px;line-height:1.5;margin:0 0 10px}
+h2{font-size:21px;margin:46px 0 12px;padding-bottom:7px;border-bottom:2px solid var(--acc)}
+h3{font-size:18px;margin:28px 0 8px}
+h4{font-size:16px;margin:22px 0 6px;color:var(--acc)}
+.lead{color:var(--mute);margin:0}
+form{background:var(--accbg);border:1px solid #cfe6df;border-radius:10px;padding:18px;margin:22px 0}
+label{display:block;font-weight:600;margin-bottom:8px}
+.r{display:flex;gap:8px;flex-wrap:wrap}
+input[type=url]{flex:1 1 260px;padding:11px 12px;font-size:16px;border:1px solid #bcd;border-radius:7px}
+button{padding:11px 20px;font-size:16px;border:0;border-radius:7px;background:var(--acc);color:#fff;font-weight:600;cursor:pointer}
+button:disabled{opacity:.5}
+.samples{margin-top:10px;font-size:14px;color:var(--mute)}
+.samples a{margin-right:12px}
+#result{margin-top:18px}
+#result table{border-collapse:collapse;width:100%;font-size:14px;margin:12px 0}
+#result th,#result td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+#result thead tr th,#result thead tr td{background:#f5f8fa;font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px;margin:14px 0}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:#f5f8fa}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+.bad{background:#fdeeee;border:1px solid #f2c6c6;border-radius:8px;padding:12px}
+.note{color:var(--mute);font-size:14px}
+.log{color:var(--mute)}
+pre{background:#101a22;color:#e6eef6;padding:14px;border-radius:8px;overflow-x:auto;font-size:12.5px;line-height:1.7}
+code{background:#f1f4f8;padding:2px 5px;border-radius:4px;font-size:.92em}
+pre code{background:none;padding:0}
+.box{border:1px solid var(--line);border-radius:9px;padding:14px 16px;margin:16px 0}
+.box.warn{background:var(--warn);border-color:#f0dcae}
+.kpi{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0}
+.kpi div{flex:1 1 150px;border:1px solid var(--line);border-radius:9px;padding:12px 14px}
+.kpi b{display:block;font-size:25px;line-height:1.3;color:var(--acc);font-variant-numeric:tabular-nums}
+.kpi span{font-size:13px;color:var(--mute)}
+footer{border-top:1px solid var(--line);margin-top:56px;padding:26px 0;color:var(--mute);font-size:13px}
+ul.slugs{font-size:14px}
+@media(prefers-color-scheme:dark){:root{--ink:#e6ecf3;--mute:#9bb;--line:#2a333f;--bg:#111821;--acc:#4ec3a7;--accbg:#16232a;--warn:#2b2516}
+header{background:linear-gradient(180deg,#16232a,#111821)}th,#result thead tr th{background:#1a232d}code{background:#1a232d}
+input[type=url]{background:#0d141b;color:#e6ecf3;border-color:#2a333f}.bad{background:#2b1718;border-color:#5a2c2c}}
+</style>
+<header><div class="wrap">
+<h1>WordPressの移行、まず「下見」だけやってみてください</h1>
+<p class="lead">サイトのURLを入れると、移行で何本・何点・何箇所を直すことになるかを数えます。<br>
+入れたURLはどこにも送りません。あなたのブラウザが、そのサイトの公開APIを直接読みます。</p>
+</div></header>
+
+<main class="wrap">
+
+<form id="shitami">
+  <label for="site">WordPressサイトのURL</label>
+  <div class="r">
+    <input type="url" id="site" placeholder="https://example.com" autocomplete="url">
+    <button id="go" type="submit">下見する</button>
+  </div>
+  <p class="samples">試す: 
+    <a href="#" data-sample="https://ja.wordpress.org">ja.wordpress.org</a>
+    <a href="#" data-sample="https://wordpress.org/news">wordpress.org/news</a>
+    <a href="#" data-sample="https://liginc.co.jp">liginc.co.jp</a>
+  </p>
+  <div id="result"></div>
+</form>
+
+<div class="box warn">
+<strong>下見でできること・できないこと</strong>
+<ul>
+<li>できる: 本数・画像の点数・埋め込みの箇所数・URLに日本語が入った記事を数える</li>
+<li>できない: 所要時間と金額を出す。これは数量に自分の単価をかけて出すものなので、こちらでは入れていません</li>
+<li>読むのは最新20本だけです（相手のサーバーに負担をかけないため）。全体の数は「読んだ分の平均×全体の本数」の見込みです</li>
+<li>公開APIが閉じているサイトでは読めません。その場合は管理画面から書き出したXMLから移します</li>
+</ul>
+</div>
+
+<h2>本物のWordPressサイトを1つ、丸ごと移してみた記録</h2>
+
+<p>下見だけでなく、実際に最後まで通した記録です。対象は <a href="https://ja.wordpress.org">日本語</a>（https://ja.wordpress.org）。
+WordPressプロジェクト自身が運営している、公開APIが開いた日本語のサイトです。</p>
+
+<div class="kpi">
+<div><b>728</b><span>移した記事と固定ページ（本）</span></div>
+<div><b>606</b><span>運んだ画像（点・70.4MB）</span></div>
+<div><b>731</b><span>書き出したページ</span></div>
+<div><b>141.5</b><span>通しの秒数（3回の中央値）</span></div>
+</div>
+
+<h3>工程ごとの秒数（同じ条件で3回）</h3>
+<table>
+<thead><tr><th>工程</th><th class="n">1回目</th><th class="n">2回目</th><th class="n">3回目</th></tr></thead>
+<tbody>
+<tr><td>下見</td><td class="n">12.2秒</td><td class="n">12秒</td><td class="n">12.2秒</td></tr>
+<tr><td>取得</td><td class="n">80.1秒</td><td class="n">80秒</td><td class="n">78.6秒</td></tr>
+<tr><td>変換</td><td class="n">48.7秒</td><td class="n">49.5秒</td><td class="n">48.5秒</td></tr>
+<tr><td>点検</td><td class="n">0.1秒</td><td class="n">0.1秒</td><td class="n">0.1秒</td></tr>
+<tr><td>サイト書き出し</td><td class="n">0.3秒</td><td class="n">0.3秒</td><td class="n">0.3秒</td></tr>
+<tr><td>見積もり項目書</td><td class="n">0秒</td><td class="n">0秒</td><td class="n">0秒</td></tr>
+<tr><th>通し</th><td class="n"><strong>141.5秒</strong></td><td class="n"><strong>141.9秒</strong></td><td class="n"><strong>139.7秒</strong></td></tr>
+</tbody>
+</table>
+<p class="note">同じ指示を3回。139.7〜141.9秒でした。画像は毎回あらためて落としています。回線と相手のサーバーの状態で変わるので、あなたの手元で同じ秒数になる保証はしません。</p>
+
+<h3>1ページあたりの重さ（旧サイトと新サイトを同じやり方で測った）</h3>
+<table>
+<thead><tr><th>　</th><th class="n">取りに行くファイルの数</th><th class="n">合計バイト数</th></tr></thead>
+<tbody>
+<tr><td>旧サイト（WordPress）</td><td class="n">11個</td><td class="n">341KB</td></tr>
+<tr><td>新サイト（静的）</td><td class="n">3個</td><td class="n">142KB</td></tr>
+</tbody>
+</table>
+<p class="note">12本の平均。HTMLに書かれた参照だけを数えた。JavaScriptは実行していない。CSSの中から読まれるフォントは含まない。新ページは手元のファイルのサイズ。</p>
+
+<h3>記事ごとの内訳</h3>
+<table>
+<thead><tr><th>記事</th><th class="n">旧：数</th><th class="n">旧：KB</th><th class="n">新：数</th><th class="n">新：KB</th></tr></thead>
+<tbody>
+<tr><td>WordPress 7.2 リリース候補版3 (RC3版)</td><td class="n">10</td><td class="n">209</td><td class="n">2</td><td class="n">12</td></tr>
+<tr><td>WordPress 7.0.3リリース</td><td class="n">11</td><td class="n">251</td><td class="n">3</td><td class="n">61</td></tr>
+<tr><td>WordPress 6.9.4 リリース</td><td class="n">10</td><td class="n">197</td><td class="n">2</td><td class="n">6</td></tr>
+<tr><td>WordPress 6.9 ベータ3</td><td class="n">10</td><td class="n">205</td><td class="n">2</td><td class="n">9</td></tr>
+<tr><td>WordPress 6.7.2メンテナンスリリース</td><td class="n">10</td><td class="n">203</td><td class="n">2</td><td class="n">12</td></tr>
+<tr><td>WordPress 6.6 “ドーシー”</td><td class="n">15</td><td class="n">984</td><td class="n">8</td><td class="n">745</td></tr>
+<tr><td>WordPress 6.5リリース候補版4</td><td class="n">10</td><td class="n">205</td><td class="n">2</td><td class="n">10</td></tr>
+<tr><td>WordPress 6.4 リリース候補版 1</td><td class="n">10</td><td class="n">209</td><td class="n">2</td><td class="n">16</td></tr>
+<tr><td>祝・WordPress 20周年 〜対面 &amp; オンライン企画・グッズ情報〜</td><td class="n">14</td><td class="n">999</td><td class="n">7</td><td class="n">801</td></tr>
+<tr><td>WordPress 6.1 ベータ 1</td><td class="n">10</td><td class="n">205</td><td class="n">2</td><td class="n">13</td></tr>
+<tr><td>WordPress 5.9 RC 3</td><td class="n">12</td><td class="n">226</td><td class="n">2</td><td class="n">8</td></tr>
+<tr><td>WordPress 5.8 リリース候補 3</td><td class="n">10</td><td class="n">197</td><td class="n">2</td><td class="n">6</td></tr>
+</tbody>
+</table>
+
+<h2>移した結果を、そのまま置いてあります</h2>
+<p>台本が書き出したHTMLそのものです。手で直していません。</p>
+<ul>
+<li><a href="./sample/blog/wordpress-7-2-release-candidate-3/">WordPress 7.2 リリース候補版3 (RC3版)</a></li>
+<li><a href="./sample/blog/wordpress-7-0-3-release/">WordPress 7.0.3リリース</a></li>
+<li><a href="./sample/blog/wordpress-6-9-4-release/">WordPress 6.9.4 リリース</a></li>
+<li><a href="./sample/blog/wordpress-6-9-beta-3/">WordPress 6.9 ベータ3</a></li>
+<li><a href="./sample/blog/wordpress-6-7-2-maintenance-release/">WordPress 6.7.2メンテナンスリリース</a></li>
+<li><a href="./sample/blog/dorsey/">WordPress 6.6 “ドーシー”</a></li>
+<li><a href="./sample/blog/wordpress-6-5-release-candidate-4/">WordPress 6.5リリース候補版4</a></li>
+<li><a href="./sample/blog/wordpress-6-4-release-candidate-1/">WordPress 6.4 リリース候補版 1</a></li>
+<li><a href="./sample/">書き出した一覧ページ</a></li>
+</ul>
+<p class="note">見本は8本だけ置いています（画像の容量のため）。本文・日付・カテゴリー・内部リンクの付け替えは、全728本に同じ処理をかけています。</p>
+
+<h2>点検係が見つけた「直す所」</h2>
+<p>移したあと、機械で見られる8つの軸で数えました。移行係（AI）が書いた置き換えルールを当てる前と、当てたあとの比較です。</p>
+<table>
+<thead><tr><th>見た軸</th><th class="n">ルール前</th><th class="n">ルール後</th></tr></thead>
+<tbody>
+<tr><td>旧サイトのままの画像リンクが残っている</td><td class="n">33</td><td class="n">15</td></tr>
+<tr><td>本文が指している画像が手元に無い</td><td class="n">7</td><td class="n">7</td></tr>
+<tr><td>画像の説明文（alt）が空</td><td class="n">429</td><td class="n">429</td></tr>
+<tr><td>URLが変わるのに転送表に無い</td><td class="n">0</td><td class="n">0</td></tr>
+<tr><td>ショートコードの残骸</td><td class="n">1</td><td class="n">1</td></tr>
+<tr><td>埋め込みが本文から消えている</td><td class="n">125</td><td class="n">31</td></tr>
+<tr><td>見出しが壊れている（本文中のh1・段の飛び）</td><td class="n">50</td><td class="n">50</td></tr>
+<tr><td>中身が足りない（タイトル空・本文が極端に短い・公開日が無い）</td><td class="n">7</td><td class="n">7</td></tr>
+<tr><th>合計</th><td class="n">652</td><td class="n">540</td></tr>
+<tr><td>うち「依頼主の返事待ち」に移したもの</td><td class="n">—</td><td class="n">23</td></tr>
+</tbody>
+</table>
+<p class="note">「画像の説明文（alt）が空」429点は、移行で壊れたものではありません。旧サイトの時点で空です。移行は、こういう前からの宿題を全部表に出します。</p>
+
+<h2>移行係（AI）が書いたルールと、人が直した1件</h2>
+<p>残ったものの一覧だけを渡して、置き換えルールを書かせました。返ってくるまで9.2秒。embeds 7件、images 5件、依頼主への質問 5件。</p>
+<p>そのうち<strong>1件は人が書き換えました</strong>。理由も含めて置いてあります。</p>
+<table>
+<thead><tr><th>対象</th><th>AIの判断</th><th>人の判断</th><th>理由</th></tr></thead>
+<tbody>
+<tr><td><code>^https?://i0\.wp\.com/</code></td><td>ask</td><td><strong>download</strong></td><td>Jetpackの画像配信は旧サイトの画像を変換して配っているだけなので、依頼主に聞くことではなく、落として運ぶのが正しい。askのままだと106点が旧ドメイン参照で残る</td></tr>
+</tbody>
+</table>
+
+<h4>AIが出したルール（そのまま）</h4>
+<pre><code>{
+  "embeds": [
+    {
+      "match": "^https?://(wordpress\\.org|make\\.wordpress\\.org|s\\.w\\.org|videos\\.files\\.wordpress\\.com)/.*\\.mp4",
+      "as": "video",
+      "note": "WordPress公式が配信している動画ファイルそのもの。video タグにする"
+    },
+    {
+      "match": "^//s\\.w\\.org/.*\\.mp4",
+      "as": "video",
+      "note": "動画ファイルそのもの。プロトコル省略形のURL"
+    },
+    {
+      "match": "^https?://www\\.youtube\\.com/embed/",
+      "as": "iframe",
+      "note": "動画配信サービスなので枠で表示してよい"
+    },
+    {
+      "match": "^https?://(videopress\\.com|video\\.wordpress\\.com)/embed/",
+      "as": "iframe",
+      "note": "動画配信サービスなので枠で表示してよい"
+    },
+    {
+      "match": "^https?://(ja\\.wordpress\\.org|wptavern\\.com)/.*/embed/?#\\?secret=",
+      "as": "ask",
+      "note": "秘密の合言葉つきの埋め込みURLで、あとで使えなくなるおそれがある"
+    },
+    {
+      "match": "^https?://open\\.spotify\\.com/embed/",
+      "as": "iframe",
+      "note": "音楽配信サービスなので枠で表示してよい"
+    },
+    {
+      "match": "^https?://docs\\.google\\.com/forms/",
+      "as": "ask",
+      "note": "フォームの送信先や公開状態を依頼主が決める必要がある"
+    }
+  ],
+  "images": [
+    {
+      "match": "^https?://(www\\.|secure\\.)?gravatar\\.com/avatar/",
+      "as": "keep",
+      "note": "著者アイコンで、外部のまま置いても問題がない"
+    },
+    {
+      "match": "^https?://wordpress\\.org/grav-redirect\\.php",
+      "as": "keep",
+      "note": "著者アイコンへの転送URLで、外部のまま置いても問題がない"
+    },
+    {
+      "match": "^https?://lh[0-9]+(-[a-z]+)?\\.googleusercontent\\.com/",
+      "as": "ask",
+      "note": "一時的な配信URLで、あとで消えるおそれがある"
+    },
+    {
+      "match": "^https?://i0\\.wp\\.com/",
+      "as": "ask",
+      "note": "画像変換サービス経由のURLで、元画像の扱いを確認したい"
+    },
+    {
+      "match": "^https?://translate\\.wordpress\\.org/",
+      "as": "ask",
+      "note": "画像ではなくページへのURLのようで、扱いを自分では決められない"
+    }
+  ],
+  "shortcodes": [],
+  "questions": [
+    "Google Docs由来の一時的な画像URL（googleusercontent.com）が複数あります。元の画像ファイルをいただけますか。それとも取得できた範囲でこちらで保存してよいですか。",
+    "リンク先が見つからない画像が7件あります（wordpress-c21d2b.png など）。元のファイルはありますか。なければ画像なしで移してよいですか。",
+    "秘密の合言葉つきの埋め込み（ja.wordpress.org・wptavern.com）は、リンクにしてよいですか。それとも別の方法にしますか。",
+    "Googleフォームの埋め込みは、新サイトでも同じフォームを使い続けてよいですか。",
+    "ショートコードのように見える文字列（[Mike Schinkel \\[WPLib Box project lead\\]）は、本文の文字として残してよいですか。"
+  ]
+}</code></pre>
+
+<h2>依頼主に聞くことも、機械が並べます</h2>
+<ol>
+<li>Google Docs由来の一時的な画像URL（googleusercontent.com）が複数あります。元の画像ファイルをいただけますか。それとも取得できた範囲でこちらで保存してよいですか。</li>
+<li>リンク先が見つからない画像が7件あります（wordpress-c21d2b.png など）。元のファイルはありますか。なければ画像なしで移してよいですか。</li>
+<li>秘密の合言葉つきの埋め込み（ja.wordpress.org・wptavern.com）は、リンクにしてよいですか。それとも別の方法にしますか。</li>
+<li>Googleフォームの埋め込みは、新サイトでも同じフォームを使い続けてよいですか。</li>
+<li>ショートコードのように見える文字列（[Mike Schinkel \[WPLib Box project lead\]）は、本文の文字として残してよいですか。</li>
+</ol>
+
+<h2>見積もりの項目書（金額は入っていません）</h2>
+<p>下見と点検の数字から、そのまま並びます。時間と金額の欄は空です。自分の単価を入れて使うものなので、こちらでは埋めません。</p>
+<pre><code># 移行の見積もり項目書
+
+対象: 日本語 ／ https://ja.wordpress.org
+下見の日: 2026-11-26
+
+数量は実際に数えた値です。所要時間と金額は入っていません。1件やってみて自分の数字を入れてください。
+
+| 工程 | 項目 | 数量 | 機械が終わらせる所 | 人が見る所 | 時間(h) | 金額 |
+| --- | --- | --- | --- | --- | --- | --- |
+| 下見 | 公開APIの有無・投稿タイプ・プラグインの痕跡を調べる | 1回 | survey.js | 移行対象に入れる投稿タイプを依頼主と決める |  |  |
+| 取得 | 記事・固定ページを落とす | 728本 | pull.js | 本数が下見と合っているか確認 |  |  |
+| 取得 | 画像を落とす | 606点 | convert.js | 落とせなかった4点の扱いを決める |  |  |
+| 変換 | 本文をMarkdownに組み直す | 728本 | convert.js | 表・引用のある記事を抜き出して見る |  |  |
+| 変換 | サイト固有の置き換えルールを書く | 12件 | 移行係（AI）が草案 | 1件ずつ読んで採否を決める |  |  |
+| 変換 | 内部リンクを新しいURLに付け替える | 421本 | convert.js | 付け替わらなかったリンクの行き先を決める |  |  |
+| 変換 | URLが変わる記事の転送表を作る | 700本 | convert.js | 流入上位だけ実際に開いて確認 |  |  |
+| 点検 | 旧サイトのままの画像リンク | 15箇所 | check.js が一覧化 | 置き換えるか残すかを決める |  |  |
+| 点検 | 手元に無い画像 | 7箇所 | check.js が一覧化 | 元画像をもらうか、画像なしにするか |  |  |
+| 点検 | 画像の説明文（alt）が空 | 429点 | check.js が一覧化 | 書くか書かないかを決める（別見積もりにしやすい所） |  |  |
+| 点検 | 消えた埋め込み | 31箇所 | check.js が一覧化 | 新サイトで1つずつ表示を見る |  |  |
+| 点検 | 見出しの壊れ | 50本 | check.js が一覧化 | 見出しの段を決める |  |  |
+| 点検 | 中身が足りない記事 | 7本 | check.js が一覧化 | 公開するかどうかを依頼主に聞く |  |  |
+| 点検 | 依頼主の返事を待っている項目 | 23箇所 | rules.json の ask | 質問を1通にまとめて送る |  |  |
+| 構築 | 新サイトを書き出す | 731ページ | build.js | 一覧・記事・固定ページを各1枚ずつ目で見る |  |  |
+| 構築 | microCMSの項目を作る・入稿する | 654本 | import.json を出すところまで | 管理画面で項目を作り、入稿結果を確認する |  |  |
+| 引き渡し | 転送の設定を置き先に入れる | 1回 | _redirects を同梱 | 本番ドメインの切り替え当日に確認 |  |  |
+| 引き渡し | 依頼主への質問をまとめる | 5件 | rules.json の questions | 聞き方を整えて送る |  |  |
+
+## 別の見積もりにしたほうがよいもの
+
+- 問い合わせフォーム・予約・会員機能（記事の文字は運べますが、機能は運べません）
+- デザインの作り直し（この項目書は「中身を移す」ぶんだけです）
+- 画像の説明文（alt）を書く作業（本数が多いときは単独の見積もりにします）
+- 旧サイトの停止とドメインの切り替え当日の立ち会い
+
+## 下見で見つかったプラグインの痕跡
+
+- Jetpack（統計・フォーム・画像配信）: 画像が別のドメインから配られていることがあります
+- ブロックエディター: 標準。そのまま運べます
+
+## 注意
+
+- ログインしないと読めない投稿タイプが4件あります: feedback, jetpack_form, jp_act_log_event, jp_pay_order
+
+## 1ページあたりの重さ（実測）
+
+- 旧サイト: 11個のファイル / 341KB
+- 新サイト: 3個のファイル / 142KB
+- 測った本数: 12本。HTMLに書かれた参照だけを数えた。JavaScriptは実行していない。CSSの中から読まれるフォントは含まない。新ページは手元のファイルのサイズ。
+</code></pre>
+
+<h2>測っていないこと</h2>
+<div class="box">
+<ul>
+<li><strong>ブラウザでの表示時間は測っていません。</strong>ファイルの数とバイト数だけです</li>
+<li><strong>microCMSへの実際の入稿はしていません。</strong>入稿用のJSONと項目の設計までです（アカウントを作らずに検証したため）</li>
+<li><strong>この移行を納品していません。</strong>受注件数・単価・月額保守の実績はありません</li>
+<li><strong>検索順位の変化は測っていません。</strong>転送表を作ったところまでです</li>
+<li>秒数は1本の回線での実測です。あなたの手元で同じになる保証はしません</li>
+<li>対象はWordPressプロジェクトの公開サイト1つと、書き出しファイル1つ（WordPress公式のテスト用データ）です</li>
+</ul>
+</div>
+
+</main>
+<footer><div class="wrap">このページの数字は、すべて手元の記録ファイル（survey / pull / convert / check / weigh / run）から機械的に埋めています。手で書いた数字はありません。</div></footer>
+<script src="./check_core.js"></script>
+<script src="./shitami.js"></script>
+</html>

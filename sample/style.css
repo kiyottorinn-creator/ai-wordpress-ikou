@@ -1,0 +1,28 @@
+:root{--ink:#1d2430;--mute:#5d6b7d;--line:#e3e8ee;--bg:#fff;--acc:#1b6b5a}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.85 system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif}
+a{color:var(--acc)}img{max-width:100%;height:auto}
+header.site{border-bottom:1px solid var(--line)}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+header.site .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+header.site strong{font-size:17px}
+h1{font-size:28px;line-height:1.45;margin:28px 0 8px}
+h2{font-size:21px;margin:40px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+h3{font-size:18px;margin:28px 0 8px}
+h4{font-size:16px;margin:22px 0 6px;color:var(--mute)}
+.meta{color:var(--mute);font-size:13px;margin-bottom:24px}
+.table-wrap{overflow-x:auto;margin:20px 0}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:#f6f8fa}
+pre{background:#0f1720;color:#e7eef6;padding:14px;border-radius:8px;overflow-x:auto;font-size:13px}
+code{background:#f1f4f8;padding:2px 5px;border-radius:4px;font-size:.92em}
+pre code{background:none;padding:0}
+blockquote{margin:20px 0;padding:4px 16px;border-left:3px solid var(--line);color:var(--mute)}
+hr{border:0;border-top:1px solid var(--line);margin:32px 0}
+ul.list{list-style:none;padding:0}
+ul.list li{border-bottom:1px solid var(--line);padding:14px 0}
+ul.list time{color:var(--mute);font-size:13px;display:block}
+footer.site{border-top:1px solid var(--line);margin-top:56px;padding:24px 0;color:var(--mute);font-size:13px}
+.tags{font-size:13px;color:var(--mute)}
+@media(prefers-color-scheme:dark){:root{--ink:#e6ebf2;--mute:#9aa7b8;--line:#28313d;--bg:#121820;--acc:#58c7ab}th{background:#1a222c}code{background:#1a222c}}

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ja">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WordPress 6.5リリース候補版4</title>
+<meta name="description" content="以下は WordPress.org 公式ブログの記事「WordPress 6.5 Release Candidate 4」を訳したものです。誤字脱字誤訳などありましたらフォーラムまでお知らせください。 WordPress […]">
+
+<link rel="stylesheet" href="../../style.css">
+<header class="site"><div class="wrap"><strong><a href="../" style="color:inherit;text-decoration:none">WordPress 日本語</a></strong><nav><a href="../">記事一覧</a></nav></div></header>
+<main class="wrap">
+<article>
+<h1>WordPress 6.5リリース候補版4</h1>
+<p class="meta">2024年3月29日 ／ 更新 2024年5月5日 ／ Development、Releases</p>
+
+<p>以下は WordPress.org 公式ブログの記事「<a href="https://wordpress.org/news/2024/03/wordpress-6-5-release-candidate-4/">WordPress 6.5 Release Candidate 4</a>」を訳したものです。
+誤字脱字誤訳などありましたら<a href="https://ja.wordpress.org/support/forum/alphabeta/">フォーラムまでお知らせください</a>。</p>
+<hr>
+<p>WordPress 6.5リリース候補版4 (RC4版) の準備が整いました。</p>
+<p>このリリース候補版は、WordPress 6.5リリースサイクルに追加された版です。より多くのテストを実施することで、可能な限りすべての機能と改良が最高の状態であることを保証します。</p>
+<p>WordPress 6.5の最終リリース目標日は変更され、2024年4月2日になりました。WordPress 6.5をもっと詳しく知りたい方は、<a href="https://make.wordpress.org/core/6-5/">6.5 リリースサイクル</a>の概略、<a href="https://make.wordpress.org/core/">Make WordPress Core ブログ</a>の <a href="https://make.wordpress.org/core/tag/6-5/">6.5 関連記事</a> を参照してください。6.5の新機能と改善項目に関する詳細な技術ノートをお探しの方は <a href="https://make.wordpress.org/core/2024/03/15/wordpress-6-5-field-guide/">WordPress 6.5フィールドガイド</a>を参照してください。</p>
+<h3>WordPress 6.5 RC4版の変更内容</h3>
+<p>このリリースの目玉機能の一つ「フォントライブラリ」に関して多くの有益なフィードバックがありました。その結果、できるだけ多くのサイトでこの期待の新機能の恩恵を受けられるよう、いくつかの<a href="https://make.wordpress.org/core/2024/03/25/wordpress-6-5-release-delayed-1-week/">追加の改良が必要となりました</a>。</p>
+<p>このリリースにはまた、エディターに関する6件のバグフィックスと <a href="https://core.trac.wordpress.org/query?status=closed&amp;amp;changetime=03/13/2024..03/19/2024&amp;amp;resolution=fixed&amp;amp;milestone=6.5&amp;amp;col=id&amp;amp;col=summary&amp;amp;col=milestone&amp;amp;col=owner&amp;amp;col=type&amp;amp;col=priority&amp;amp;order=id">WordPress コアに関する10件以上のチケット</a>が含まれています。RC3版以降に解決された問題に関する技術的な情報については、以下のリンクを参照してください。</p>
+<ul><li><a href="https://github.com/WordPress/gutenberg/commits/wp/6.5?since=2024-03-20&amp;amp;until=2024-03-28">6.5の GitHub コミット一覧</a></li><li><a href="https://core.trac.wordpress.org/query?status=closed&amp;amp;changetime=03/20/2024..03/28/2024&amp;amp;resolution=fixed&amp;amp;milestone=6.5&amp;amp;col=id&amp;amp;col=summary&amp;amp;col=milestone&amp;amp;col=owner&amp;amp;col=type&amp;amp;col=priority&amp;amp;order=id">クローズされた Track チケット一覧</a></li></ul>
+<h3>テストの方法</h3>
+<p><strong>このバージョンの WordPress は未だ開発途上の段階にあります。本稼働中のウェブサイトにインストールして使用することは避けてください。</strong>リリース候補版4の評価はテスト用のサーバーを用意してその上で行いましょう。</p>
+<p>リリース候補版は最終リリースの水準に限りなく近づいた品質にあると見なすことができますが、WordPress 6.5を最高の状態で世に出すためには引き続きのテストが欠かせません。</p>
+<p>WordPress 6.5リリース候補版4のテストには次の4通りの方法があります:</p>
+<div class="table-wrap"><table><tbody><tr><td><strong>プラグイン</strong></td><td><a href="https://wordpress.org/plugins/wordpress-beta-tester/">WordPress Beta Tester</a> プラグインをインストールして有効化する。設定では「最前線」チャンネルと「ベータ / RC のみ」ストリームをそれぞれ選択。</td></tr><tr><td><strong>直接ダウンロード</strong></td><td><a href="https://wordpress.org/wordpress-6.5-RC4.zip">リリース候補版4 (RC4版)の zip ファイル</a>をダウンロードして WordPress ウェブサイトにインストールする。</td></tr><tr><td><strong>コマンドライン</strong></td><td>次の <a href="https://make.wordpress.org/cli/">WP-CLI</a> コマンドを実行する。 <code>wp core update --version=6.5-RC4</code></td></tr><tr><td><strong>WordPress Playground</strong></td><td><a href="https://playground.wordpress.net/#%7B%20%22preferredVersions%22:%20%7B%20%22php%22:%20%228.0%22,%20%22wp%22:%20%22beta%22%20%7D,%20%22features%22:%20%7B%20%22networking%22:%20true%20%7D,%20%22steps%22:%20[%20%7B%20%22step%22:%20%22login%22,%20%22username%22:%20%22admin%22,%20%22password%22:%20%22password%22%20%7D,%20%7B%20%22step%22:%20%22importFile%22,%20%22file%22:%20%7B%20%22resource%22:%20%22url%22,%20%22url%22:%20%22https://raw.githubusercontent.com/wpaccessibility/a11y-theme-unit-test/master/a11y-theme-unit-test-data.xml%22%20%7D%20%7D,%20%7B%20%22step%22:%20%22importFile%22,%20%22file%22:%20%7B%20%22resource%22:%20%22url%22,%20%22url%22:%20%22https://raw.githubusercontent.com/WordPress/theme-test-data/master/themeunittestdata.wordpress.xml%22%20%7D%20%7D,%20%7B%20%22step%22:%20%22installPlugin%22,%20%22pluginZipFile%22:%20%7B%20%22resource%22:%20%22wordpress.org/plugins%22,%20%22slug%22:%20%22query-monitor%22%20%7D,%20%22options%22:%20%7B%20%22activate%22:%20false%20%7D,%20%22progress%22:%20%7B%20%22weight%22:%202%20%7D%20%7D,%20%7B%20%22step%22:%20%22installPlugin%22,%20%22pluginZipFile%22:%20%7B%20%22resource%22:%20%22wordpress.org/plugins%22,%20%22slug%22:%20%22create-block-theme%22%20%7D,%20%22progress%22:%20%7B%20%22weight%22:%202%20%7D%20%7D,%20%7B%20%22step%22:%20%22installPlugin%22,%20%22pluginZipFile%22:%20%7B%20%22resource%22:%20%22wordpress.org/plugins%22,%20%22slug%22:%20%22debug-bar%22%20%7D,%20%22progress%22:%20%7B%20%22weight%22:%202%20%7D%20%7D,%20%7B%20%22step%22:%20%22installPlugin%22,%20%22pluginZipFile%22:%20%7B%20%22resource%22:%20%22wordpress.org/plugins%22,%20%22slug%22:%20%22health-check%22%20%7D,%20%22progress%22:%20%7B%20%22weight%22:%202%20%7D%20%7D,%20%7B%20%22step%22:%20%22installPlugin%22,%20%22pluginZipFile%22:%20%7B%20%22resource%22:%20%22wordpress.org/plugins%22,%20%22slug%22:%20%22test-reports%22%20%7D,%20%22progress%22:%20%7B%20%22weight%22:%202%20%7D%20%7D,%20%7B%20%22step%22:%20%22installPlugin%22,%20%22pluginZipFile%22:%20%7B%20%22resource%22:%20%22wordpress.org/plugins%22,%20%22slug%22:%20%22user-switching%22%20%7D,%20%22progress%22:%20%7B%20%22weight%22:%202%20%7D%20%7D%20]%20%7D">6.5 RC4 WordPress Playground instance</a> インスタンスを使用する。ブラウザで直接ソフトウェアをテストできます。個別のサイトやセットアップは必要ありません。</td></tr></tbody></table></div>
+<h3>ここで一句</h3>
+<p>With some extra time
+Test, rinse, repeat, and refresh
+WordPress will really shine</p>
+<p>追加の時間を利用して
+テスト、リンス、リピート、リフレッシュ
+輝け WordPress</p>
+<p><em>この投稿にご協力いただいた以下のコントリビューターに感謝します。: <a href="https://profiles.wordpress.org/dansoschin/">@dansoschin</a></em></p>
+</article>
+</main>
+<footer class="site"><div class="wrap">このページは静的なHTMLです。表示のためにデータベースを使っていません。</div></footer>
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ja">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WordPress 7.0.3リリース</title>
+<meta name="description" content="以下は WordPress.org 公式ブログの記事「WordPress 7.0.3 Release」を訳したものです。 誤字脱字誤訳などありましたらフォーラムまでお知らせください。 WordPress 7.0.3を利用 […]">
+
+<link rel="stylesheet" href="../../style.css">
+<header class="site"><div class="wrap"><strong><a href="../" style="color:inherit;text-decoration:none">WordPress 日本語</a></strong><nav><a href="../">記事一覧</a></nav></div></header>
+<main class="wrap">
+<article>
+<h1>WordPress 7.0.3リリース</h1>
+<p class="meta">2026年8月7日 ／ Development、Releases、Security</p>
+
+<p>以下は WordPress.org 公式ブログの記事「<a href="https://wordpress.org/news/2026/08/wordpress-7-0-3-release/">WordPress 7.0.3 Release</a>」を訳したものです。</p>
+<p>誤字脱字誤訳などありましたら<a href="https://ja.wordpress.org/support/forum/alphabeta/">フォーラムまでお知らせください</a>。</p>
+<hr>
+<h3>WordPress 7.0.3を利用できます。</h3>
+<p>WordPress 7.0.3がリリースされました。このバージョンでは、いくつかのセキュリティ修正が行われています。セキュリティリリースであるため、お使いのサイトを直ちに更新することをお勧めします。</p>
+<p>WordPress 7.0.3への更新は、<a href="https://wordpress.org/wordpress-7.0.3.zip">WordPress.org からダウンロードする</a>か、サイトのダッシュボード→「更新」にアクセスして<strong>「今すぐ更新」</strong>をクリックすることで行えます。自動バックグラウンド更新に対応しているサイトでは、まもなく更新が開始されます。</p>
+<p>詳細については、<a href="https://wordpress.org/documentation/wordpress-version/version-7-0-3/">WordPress 7.0.3 HelpHub サイト</a>をご覧ください。</p>
+<h3>このリリースに含まれるセキュリティ更新</h3>
+<p>セキュリティチームは、脆弱性を責任ある形で報告していただき、本リリースでの修正につながった以下の皆さんに感謝いたします:</p>
+<ul><li><a href="https://pwn.ai/">pwn.ai</a> のチームから報告された、ログイン画面における認証前の反射型クロスサイトスクリプティング (XSS) で、PHP コードの実行につながる可能性がありました。</li><li>寄稿者権限以上: 絵文字設定要素を介した投稿内の保存型クロスサイトスクリプティング (XSS)。Asaf Mozes 氏 (<a href="https://hackerone.com/amosec?type=user">amosec</a>) より報告されました。</li><li>寄稿者権限以上: 投稿コンテンツブロック内の保存型クロスサイトスクリプティング (XSS)。<a href="https://hackerone.com/n05ec">n05ec</a> 氏より報告されました。</li><li>寄稿者権限以上: ユーザー数が非常に多いサイトにおいて、「クイック編集」機能に保存型クロスサイトスクリプティング (XSS) の脆弱性が存在しました。報告者: <a href="https://www.linkedin.com/in/naveens72/">Naveen S</a> 氏および <a href="https://www.linkedin.com/in/ajmalmoochingal/">Ajmal Moochingal</a> 氏</li><li>寄稿者権限以上: 「投稿日」ブロックに保存型クロスサイトスクリプティング (XSS) の脆弱性が存在しました。報告者: WordPressセキュリティチームの <a href="https://profiles.wordpress.org/xknown/">Alex Concha</a> 氏</li><li>ユーザー登録が有効なマルチサイトネットワークにおける権限昇格の脆弱性により、ユーザーが新しいサイトを作成できてしまう問題が発生しました。報告者: <a href="https://aikido.dev/">Aikido Security</a></li><li>WordPress セキュリティチームの <a href="https://profiles.wordpress.org/ehtis/">Ehtisham Siddiqui</a> 氏により報告された、パスワード保護された投稿のコメントを漏洩させる「最新のコメント」ブロックにおける情報漏洩の問題</li><li><a href="https://hdwsec.fr/">HDWSec</a> 氏により報告された、投稿スラッグの列挙</li><li><a href="https://profiles.wordpress.org/odkdn1/">Elio Gubser</a> 氏により報告された、コメントフィードにおけるメモの漏洩</li><li>Anthropic により報告された、安全な CSS 属性フィルターのバイパスを介した投稿者権限以上 の CSS インジェクション</li><li><a href="https://hackerone.com/0ways">0ways</a> 氏により報告された、メールアドレスの確認フローのバイパス</li><li>URL 検証におけるサーバーサイドリクエストフォージェリ (SSRF) の問題により、リンクローカル範囲へのリクエストが可能となる。報告者: <a href="https://hackerone.com/andrewmohawk?type=user">Andrew Mohawk</a> 氏および複数の独立した報告者</li></ul>
+<h3>バックポート</h3>
+<p>これらの修正は、必要に応じて、セキュリティ修正の適用対象となるすべてのブランチ (現在は4.7まで) に任意の対応としてバックポートされています。念のため申し上げますが、<strong>公式にサポートされているのは WordPress の最新バージョンのみです</strong>。バックポート作業は現在進行中で、準備が整い次第順次リリースされます。</p>
+<p>また、該当するすべての修正は WordPress 7.1 RC2 に含まれます。</p>
+<h3>CVE および GHSA の参照情報</h3>
+<p>ログイン画面の XSS 脆弱性の詳細については、以下のアドバイザリをご覧ください: <a href="https://github.com/WordPress/wordpress-develop/security/advisories/GHSA-52p2-r8wf-jcrf">CVE-2026-64638 / GHSA-52p2-r8wf-jcrf</a></p>
+<h3>WordPress コントリビューターの皆さんに感謝</h3>
+<p>今回のリリースは、<a href="https://profiles.wordpress.org/johnbillion/">John Blackbourn</a> がリードしました。加えて以下の方々の多大な貢献により、WordPress 7.0.3をリリースすることができました: <a href="https://profiles.wordpress.org/aaroncampbell">Aaron D. Campbell</a>, <a href="https://profiles.wordpress.org/jorbin">Aaron Jorbin</a>, <a href="https://profiles.wordpress.org/adamsilverstein">Adam Silverstein</a>, <a href="https://profiles.wordpress.org/adrianmoldovanwp">adrianmoldovanwp</a>, <a href="https://profiles.wordpress.org/wildworks">Aki Hamano</a>, <a href="https://profiles.wordpress.org/xknown">Alex Concha</a>, <a href="https://profiles.wordpress.org/aduth">Andrew Duthie</a>, <a href="https://profiles.wordpress.org/andrewserong">Andrew Serong</a>, <a href="https://profiles.wordpress.org/annezazu">annezazu</a>, <a href="https://profiles.wordpress.org/barry">Barry</a>, <a href="https://profiles.wordpress.org/bernhard-reiter">Bernie Reiter</a>, <a href="https://profiles.wordpress.org/villanovachile">Daniel</a>, <a href="https://profiles.wordpress.org/talldanwp">Daniel Richards</a>, <a href="https://profiles.wordpress.org/davidbinda">David Biňovec</a>, <a href="https://profiles.wordpress.org/dmsnell">Dennis Snell</a>, <a href="https://profiles.wordpress.org/ehtis">Ehtisham Siddiqui</a>, <a href="https://profiles.wordpress.org/erwanlr">Erwan Le Rousseau</a>, <a href="https://profiles.wordpress.org/fabiankaegy/">Fabian Kaegy</a>, <a href="https://profiles.wordpress.org/fiocavallari">fiocavallari</a>, <a href="https://profiles.wordpress.org/mamaduka">George Mamadashvili</a>, <a href="https://profiles.wordpress.org/odkdn1">gubser</a>, <a href="https://profiles.wordpress.org/isabel_brison">Isabel Brison</a>, <a href="https://profiles.wordpress.org/jsnajdr">Jarda Snajdr</a>, <a href="https://profiles.wordpress.org/audrasjb">Jb Audras</a>, <a href="https://profiles.wordpress.org/jeremyfelt">Jeremy Felt</a>, <a href="https://profiles.wordpress.org/joedolson">Joe Dolson</a>, <a href="https://profiles.wordpress.org/joehoyle">Joe Hoyle</a>, <a href="https://profiles.wordpress.org/johnbillion">John Blackbourn</a>, <a href="https://profiles.wordpress.org/jonsurrell">Jon Surrell</a>, <a href="https://profiles.wordpress.org/desrosj">Jonathan Desrosiers</a>, <a href="https://profiles.wordpress.org/khokansardar">Khokan Sardar</a>, <a href="https://profiles.wordpress.org/lancewillett">Lance Willett</a>, <a href="https://profiles.wordpress.org/lucasbustamante">lucasbustamante</a>, <a href="https://profiles.wordpress.org/lucatume">lucatume</a>, <a href="https://profiles.wordpress.org/mciampini/">Marco Ciampini</a>, <a href="https://profiles.wordpress.org/tyxla">Marin Atanasov</a>, <a href="https://profiles.wordpress.org/batmoo">Mohammad Jangda</a>, <a href="https://profiles.wordpress.org/mukesh27">Mukesh Panchal</a>, <a href="https://profiles.wordpress.org/paulkevan">Paul Kevan</a>, <a href="https://profiles.wordpress.org/peterwilsoncc">Peter Wilson</a>, <a href="https://profiles.wordpress.org/ramonopoly">ramonopoly</a>, <a href="https://profiles.wordpress.org/sergeybiryukov">SergeyBiryukov</a>, <a href="https://profiles.wordpress.org/vortfu">vortfu</a>, <a href="https://profiles.wordpress.org/westonruter">Weston Ruter</a></p>
+<p><img src="../../images/wcus-2026-teaser-f60f29.png" alt="WordCamp US: Powered by WordPress, Driven by Community, August 16-19, 2026" loading="lazy" decoding="async"></p>
+<p>8月16日から19日にかけて開催される <a href="https://us.wordcamp.org/2026/">WordCamp US 2026</a>で、WordPress 7.1のリリースイベントにぜひご参加ください。</p>
+<hr>
+<p>協力者: <a href="https://profiles.wordpress.org/sysbird/">@sysbird</a>, <a href="https://profiles.wordpress.org/atachibana/">@atachibana</a>, <a href="https://profiles.wordpress.org/toru/">@toru</a>, <a href="https://profiles.wordpress.org/torikumo/">@torikumo</a></p>
+</article>
+</main>
+<footer class="site"><div class="wrap">このページは静的なHTMLです。表示のためにデータベースを使っていません。</div></footer>
+</html>
